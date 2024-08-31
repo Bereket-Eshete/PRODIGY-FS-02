@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
-import { response } from "express";
 
 const Home = () => {
   const [employees, setEmployees] = useState([]);
@@ -26,7 +25,7 @@ const Home = () => {
     <div className="p-4">
       <div className="flex item-center justify-between">
         <h1 className="text-3xl my-8">Employee List</h1>
-        <Link to={"/employee/create"}>
+        <Link to={"/createEmployee"}>
           <MdOutlineAddBox className="text-sky-800 text-3xl" />
         </Link>
       </div>
@@ -57,7 +56,7 @@ const Home = () => {
                   {employee.name}
                 </td>
                 <td className="border border-slate-700 rounded-md text-center">
-                  {employee.emil}
+                  {employee.email}
                 </td>
                 <td className="border border-slate-700 rounded-md text-center">
                   {employee.department}
@@ -70,13 +69,13 @@ const Home = () => {
                 </td>
                 <td className="border border-slate-700 rounded-md text-center">
                   <div className="flex justify-center gap-x-4">
-                    <Link to={`/employee/details/${employee._id}`}>
+                    <Link to={`/ShowEmployee/${employee._id}`}>
                       <BsInfoCircle className="text-2xl text-green-800" />
                     </Link>
-                    <Link to={`/employee/edit/${employee._id}`}>
+                    <Link to={`/EditEmployee/${employee._id}`}>
                       <AiOutlineEdit className="text-2xl text-yellow-600" />
                     </Link>
-                    <Link to={`/employee/delete/${employee._id}`}>
+                    <Link to={`/DeleteEmployee/${employee._id}`}>
                       <MdOutlineDelete className="text-2xl text-red-800" />
                     </Link>
                   </div>
