@@ -1,13 +1,13 @@
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App.jsx";
+import "./index.css";
+import { SnackbarProvider } from "notistack";
 
-import { createRoot } from 'react-dom/client'
-import {BrowserRouter} from 'react-router-dom'
-import App from './App.jsx'
-import './index.css'
-
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-     <App />
+    <SnackbarProvider>
+      <App />
+    </SnackbarProvider>
   </BrowserRouter>
-   
-  
-)
+);

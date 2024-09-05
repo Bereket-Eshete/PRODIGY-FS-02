@@ -4,6 +4,8 @@ import BackArrow from "../components/BackArrow";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
+
 const CreateEmployee = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,6 +14,7 @@ const CreateEmployee = () => {
   const [salary, setSalary] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const handleForm = (e) => {
     e.preventDefault();
     const data = {
@@ -26,11 +29,12 @@ const CreateEmployee = () => {
       .post("http://localhost:5000/employee/create", data)
       .then(() => {
         setLoading(false);
+        enqueueSnackbar("Employee Created Succesfully", { variant: "success" });
         navigate("/");
       })
       .catch((error) => {
         setLoading(false);
-        alert(`error creating on user try agin`);
+        enqueueSnackbar("Error", { variant: "error" });
       });
   };
   return (
