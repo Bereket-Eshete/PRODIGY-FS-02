@@ -11,7 +11,7 @@ const EditEmployee = () => {
   const [department, setDepartment] = useState("");
   const [designation, setDesignation] = useState("");
   const { enqueueSnackbar } = useSnackbar();
-  const [salary, setSalary] = useState(0);
+  const [salary, setSalary] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -25,6 +25,7 @@ const EditEmployee = () => {
         setDepartment(response.data.department);
         setDesignation(response.data.designation);
         setSalary(response.data.salary);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -56,63 +57,75 @@ const EditEmployee = () => {
   };
   return (
     <div className="p-4">
-      <BackArrow />
-      <h1 className="text-3xl my-4">Edit Employee</h1>
       {loading ? <Spinner /> : " "}
-      <div className="border-sky-500 border-2 flex  justify-center items-center rounded-xl w-96 p-4">
-        <form onSubmit={handleForm} className="my-4 ">
-          <label className="text-xl mr-4 text-gray-500">Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-          <label className="text-xl mr-4 text-gray-500">Email:</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-          <label className="text-xl mr-4 text-gray-500">Department:</label>
-          <input
-            type="text"
-            value={department}
-            onChange={(e) => {
-              setDepartment(e.target.value);
-            }}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-          <label className="text-xl mr-4 text-gray-500">Designation:</label>
-          <input
-            type="text"
-            value={designation}
-            onChange={(e) => {
-              setDesignation(e.target.value);
-            }}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-          <label className="text-xl mr-4 text-gray-500">Salary:</label>
-          <input
-            type="number"
-            value={salary}
-            onChange={(e) => {
-              setSalary(e.target.value);
-            }}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-          <button
-            type="submit"
-            className=" bg-sky-600 text-white cursor-pointer p-2 m-8"
-          >
-            Save
-          </button>
-        </form>
+      <div className="max-w-md w-full bg-gray-800 bg-opacity-50  backdrop:-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden m-auto">
+        <div className="p-8">
+          <h1 className="text-3xl font-bold my-6  bg-gradient-to-r from-sky-400 to bg-emerald-500 text-transparent bg-clip-text font-serif">
+            Edit Employee
+          </h1>
+          <form onSubmit={handleForm}>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="Name"
+              className="w-full pl-2 pr-3 py-2 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-2  focus:ring-green-500 text-white 
+              placeholder-gray-400 transition duration-200 mb-3"
+            />
+
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="Email"
+              className="w-full pl-2 pr-3 py-2 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-2  focus:ring-green-500 text-white 
+              placeholder-gray-400 transition duration-200 mb-3"
+            />
+
+            <input
+              type="text"
+              value={department}
+              onChange={(e) => {
+                setDepartment(e.target.value);
+              }}
+              placeholder="Department"
+              className="w-full pl-2 pr-3 py-2 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-2  focus:ring-green-500 text-white 
+              placeholder-gray-400 transition duration-200 mb-3"
+            />
+
+            <input
+              type="text"
+              value={designation}
+              onChange={(e) => {
+                setDesignation(e.target.value);
+              }}
+              placeholder="Designation"
+              className="w-full pl-2 pr-3 py-2 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-2  focus:ring-green-500 text-white 
+              placeholder-gray-400 transition duration-200 mb-3"
+            />
+
+            <input
+              type="text"
+              value={salary}
+              onChange={(e) => {
+                setSalary(e.target.value);
+              }}
+              placeholder="Salary"
+              className="w-full pl-2 pr-3 py-2 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-2  focus:ring-green-500 text-white 
+              placeholder-gray-400 transition duration-200 mb-3"
+            />
+            <button
+              type="submit"
+              className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-sky-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg hover:from-sky-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500  focus:ring-offset-2 focus:ring-offset-gray-900 transition dueation-200 text-xl"
+            >
+              Edit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const BackArrow = ({ destination = "/" }) => {
   return (
     <div className="felx">
       <Link to={destination}>
-        <BsArrowLeft className="bg-sky-600 text-white px-3 py-1 rounded-lg w-fit" />
+        <BsArrowLeft className="bg-sky-600 text-gray-600 p-5 rounded-md w-fit" />
       </Link>
     </div>
   );
