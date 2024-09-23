@@ -16,6 +16,7 @@ const CreateEmployee = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const token = localStorage.getItem("token");
   const handleForm = (e) => {
     e.preventDefault();
     const data = {
@@ -27,7 +28,9 @@ const CreateEmployee = () => {
     };
     setLoading(true);
     axios
-      .post("http://localhost:5000/employee/create", data)
+      .post("http://localhost:5000/employee/create", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Employee Created Succesfully", { variant: "success" });

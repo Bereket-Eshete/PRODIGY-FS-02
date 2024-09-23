@@ -7,11 +7,11 @@ import {
   deleteEmployee,
 } from "../controllers/emp.controller.js";
 const router = express.Router();
-
-router.post("/create", createEmployee);
-router.get("/", getEmployee);
-router.get("/:id", getEmployeeById);
-router.put("/update/:id", updateEmployee);
-router.delete("/delete/:id", deleteEmployee);
+import authMidleware from "../midleware/auth.midleware.js";
+router.post("/create", authMidleware, createEmployee);
+router.get("/", authMidleware, getEmployee);
+router.get("/:id", authMidleware, getEmployeeById);
+router.put("/update/:id", authMidleware, updateEmployee);
+router.delete("/delete/:id", authMidleware, deleteEmployee);
 
 export default router;

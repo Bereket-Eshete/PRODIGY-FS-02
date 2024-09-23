@@ -10,14 +10,17 @@ const DeleteEmployee = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
+  const token = localStorage.getItem("token");
   const handleDelete = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5000/employee/delete/${id}`)
+      .delete(`http://localhost:5000/employee/delete/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Employee Deleted Succesfully", { variant: "success" });
-        navigate("/");
+        navigate("/Home");
       })
       .catch((error) => {
         setLoading(false);
@@ -28,7 +31,7 @@ const DeleteEmployee = () => {
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold my-6  bg-gradient-to-r from-sky-400 to bg-emerald-500 text-transparent bg-clip-text font-serif text-center">
-        Delete Book
+        Delete Employee
       </h1>
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
